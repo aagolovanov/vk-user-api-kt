@@ -1,6 +1,5 @@
 package com.github.aagolovanov.vkuserapi
 
-import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.net.URI
 import java.net.URLEncoder.encode
@@ -9,7 +8,6 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.net.http.HttpResponse.BodyHandlers
 import java.time.Duration
-import javax.swing.text.html.HTML.Attribute.HREF
 
 class ApiHTTPClient(client: HttpClient? = null) {
     private val client = client ?: HttpClient.newBuilder()
@@ -22,13 +20,7 @@ class ApiHTTPClient(client: HttpClient? = null) {
 
     fun request(url: String, data: Map<String, Any>?): HttpResponse<String>? {
 
-        val stringData: String
-        = if (data == null) {
-            encodeOptions(mapOf("v" to "5.131"))
-        } else {
-            val newData = data + ("v" to "5.131")
-            encodeOptions(newData)
-        }
+        val stringData = encodeOptions(data.orEmpty() + ("v" to "5.131"))
 
         val builder = HttpRequest.newBuilder(
             URI.create(url)

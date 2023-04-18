@@ -1,15 +1,15 @@
-package com.github.aagolovanov.vkuserapi.models.regular
+package com.github.aagolovanov.vkuserapi.response.models.regular
 
 import com.github.aagolovanov.vkuserapi.API
-import com.github.aagolovanov.vkuserapi.models.UserModel
+import com.github.aagolovanov.vkuserapi.response.models.UserModel
 
-class Dialogs(val api: API, val userModel: UserModel): Iterator<Dialog> {
-    val dialogs: List<Dialog> by lazy { fetchDialogs() }
+class Dialogs(val api: API, val userModel: UserModel): Iterator<Conversation> {
+    val dialogs: List<Conversation> by lazy { fetchDialogs() }
     val size: Int by lazy { getDialogCount() }
     val messages: Iterator<Message> by lazy { TODO("dialog messages iterator") }
 
 
-    private fun fetchDialogs(): List<Dialog> {
+    private fun fetchDialogs(): List<Conversation> {
         TODO("Not implemented")
     }
 
@@ -22,7 +22,7 @@ class Dialogs(val api: API, val userModel: UserModel): Iterator<Dialog> {
         TODO("Not yet implemented")
     }
 
-    override fun next(): Dialog {
+    override fun next(): Conversation {
         TODO("Not yet implemented")
     }
 }
